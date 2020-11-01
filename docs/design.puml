@@ -1,0 +1,34 @@
+@startuml
+title DDD Workshop
+class Party {
+    name: string
+    date: Date
+    totalPayment: number
+    members: PartyMember[]
+    Party(name: string, date: Date)
+    addPayment(payment: number)
+    subtractPayment(payment: number)
+    showTotalPayment()
+    addMember(Member member)
+    removeMember(id: numberId)
+    showMembers()
+    splitBill(typeToRatio: Record<PaymentType, number>): Record<number, number>
+}
+
+class PartyMember {
+    id: number
+    name: string
+    paymentType: PaymentType
+    private static nentId: number
+    PartyMember(id: number, name: string, paymentType: PaymentType)
+}
+
+enum PaymentType {
+    Large
+    Medium
+    Small
+}
+
+Party "1" o- "1.." PartyMember
+PartyMember "1" o-down- "1" PaymentType
+@enduml

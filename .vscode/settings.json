@@ -1,0 +1,21 @@
+{
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "[typescript]": {
+      "editor.rulers": [100]
+    },
+    "[typescriptreact]": {
+      "editor.rulers": [100]
+    },
+    "eslint.enable": true,
+    "eslint.packageManager": "yarn",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[css]": {
+      "editor.formatOnSave": true
+    },
+    "[json]": {
+      "editor.formatOnSave": true
+    }
+  }
+  
