@@ -1,10 +1,14 @@
+import { ProductTagged } from '../base/product-tagged';
+
 type Currency = 'JPY' | 'USD' | 'EUR';
 
-export interface Money {
-  readonly _tag: 'Money';
-  readonly amount: number;
-  readonly currency: Currency;
-}
+export type Money = ProductTagged<
+  {
+    amount: number;
+    currency: Currency;
+  },
+  'Money'
+>;
 
 function create(amount: number, currency: Currency): Money {
   return {
