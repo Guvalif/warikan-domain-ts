@@ -28,25 +28,25 @@ export function createIsomorphism<X extends PrimitiveTypes, Tag extends string>(
 }
 
 export function withAssertions<X extends PrimitiveTypes, Tag extends string>(
-  isomorphism: Isomorphism<X, Tag>,
   assertions: Array<(x: X) => void | never>,
-): Isomorphism<X, Tag> {
-  return {
+): (isomorphism: Isomorphism<X, Tag>) => Isomorphism<X, Tag> {
+  return (isomorphism) => ({
     ...isomorphism,
     to: (x: X) => {
       assertions.forEach((assertion) => assertion(x));
 
       return isomorphism.to(x);
     },
-  };
+  });
 }
 
 export function withDefault<X extends PrimitiveTypes, Tag extends string>(
-  isomorphism: Isomorphism<X, Tag>,
   defaultValue: X,
-): Isomorphism<X, Tag> & { DEFAULT: UnitTagged<X, Tag> } {
-  return {
+): (
+  isomorphism: Isomorphism<X, Tag>,
+) => Isomorphism<X, Tag> & { readonly DEFAULT: UnitTagged<X, Tag> } {
+  return (isomorphism) => ({
     ...isomorphism,
     DEFAULT: isomorphism.unsafeCoerce(defaultValue),
-  };
+  });
 }
