@@ -1,4 +1,4 @@
-import { ProductTagged } from '../base/product-tagged';
+import type { ProductTagged } from '../base/product-tagged';
 
 type Currency = 'JPY' | 'USD' | 'EUR';
 
